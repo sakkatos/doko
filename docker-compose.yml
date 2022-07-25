@@ -1,0 +1,26 @@
+version: '3.7'
+networks:
+  tdd:
+    name: 'tdd'
+services:
+  tdd:
+    container_name: tdd
+    image: golang
+    environment:
+      TZ: Asia/Singapore
+      CORS_WHITELIST: ${CORS_WHITELIST}
+      DB_NAME: ${DB_NAME:-tdd}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-password}
+      DB_HOST: ${DB_HOST:-test-postgres-tdd}
+      SERVICE_NAME: ${SERVICE_NAME:-tdd}
+      SERVICE_VERSION: ${SERVICE_VERSION:-0.0.0}
+    volumes:
+      - ./:/go/src/tdd
+    working_dir: /go/src/tdd
+    networks:
+      - tdd
+    command: ./scripts/run-local.sh
+    ports:
+      - '9000:9000'
+    restart: always
