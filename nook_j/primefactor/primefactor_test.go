@@ -57,3 +57,9 @@ func Test_PrimefactorOf1_shouldbe_emptyArray(t *testing.T) {
 	assert.Equal(t, answer, expected, "คำตอบต้องเป็น %v แต่ได้ %v", expected, answer)
 }
 
+func Test_PrimefactorOfminus9_shouldbe_minus3and3(t *testing.T) {
+	answer := PrimeFactor(-9)
+	expected := []int{-3,3}
+	assert.Equal(t, answer, expected, "คำตอบต้องเป็น %v แต่ได้ %v", expected, answer)
+}
+
